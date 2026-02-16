@@ -165,11 +165,16 @@ pointer-events: auto;
 }
 
 .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    object-fit: cover;
-    border: 1px solid var(--border);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    
+    /* THE FIXES: */
+    object-fit: cover; /* Ensures it fills the circle perfectly */
+    transform: translateZ(0); /* Forces GPU rendering (smoothes edges) */
+    backface-visibility: hidden; /* Fixes flickering/noise on some screens */
+    image-rendering: -webkit-optimize-contrast; /* Helps with sharpness */
 }
 
 .mono-label {
