@@ -230,6 +230,17 @@ h1 {
     margin-right: 5px;
     color: #888;
 }
+@media (max-width: 400px) {
+    .tech-stack {
+        flex-wrap: wrap; /* Only wrap on very tiny screens */
+    }
+    .tech-stack span {
+        font-size: 0.7rem;
+        flex: 1 1 auto; /* Allows them to stretch to fill space */
+        text-align: center;
+        margin-top: 4px;
+    }
+}
 
 /* Project Feed */
 .project-feed {
