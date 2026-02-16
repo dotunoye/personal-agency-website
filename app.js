@@ -74,7 +74,7 @@ function initObserver() {
     });
 }, { 
     threshold: 0.1,
-    rootMargin: "0px 0px 0px 0px" // <--- THE FIX: Triggers animation 200px early
+    rootMargin: "0px 0px 100px 0px" // <--- THE FIX: Triggers animation 200px early
 });
 
     revealElements.forEach(el => observer.observe(el));
