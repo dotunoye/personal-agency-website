@@ -66,15 +66,16 @@ function initObserver() {
     const revealElements = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Stop watching once revealed (Performance)
+        }
     });
+}, { 
+    threshold: 0.1,
+    rootMargin: "0px 0px 0px 0px" // <--- THE FIX: Triggers animation 200px early
+});
 
     revealElements.forEach(el => observer.observe(el));
 }
