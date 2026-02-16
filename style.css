@@ -3,12 +3,20 @@
     --glass: rgba(255, 255, 255, 0.03);
     --border: rgba(255, 255, 255, 0.08);
     --text: #ededed;
-    --accent: #2E5CFF; /* Electric Blue */
+    --accent: #2E5CFF;
     --font-main: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: var(--bg);
@@ -17,40 +25,123 @@ body {
     overflow-x: hidden;
 }
 
-/* === 1. THE MESH BACKGROUND === */
+::selection {
+    background: #2E5CFF;
+    color: white;
+}
+
+/* Mesh Background */
 .mesh-bg {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -1;
     background: radial-gradient(circle at 10% 10%, rgba(46, 92, 255, 0.15), transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(192, 160, 98, 0.1), transparent 40%);
-    filter: blur(60px); /* Creates the soft mesh look */
+    filter: blur(60px);
 }
 
-/* === 2. NAV === */
+/* Navigation */
 .nav {
+position: fixed;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centers the pill */
+    z-index: 100;
+    padding: 0 24px;
+    pointer-events: none;
+}
+.nav-container {
+pointer-events: auto;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    padding: 12px 20px; /* Tighter vertical padding */
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 2rem;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    mix-blend-mode: exclusion; /* Makes text readable on light/dark */
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s;
 }
-.logo { font-weight: 700; letter-spacing: -1px; }
-.status-indicator { 
-    font-family: var(--font-mono); font-size: 0.75rem; color: #00ff88; 
-    text-decoration: none; display: flex; align-items: center; gap: 8px;
-}
-.blink { width: 6px; height: 6px; background: #00ff88; border-radius: 50%; animation: pulse 1.5s infinite; }
 
-/* === 3. GLASS CARD (INTRO) === */
+.nav-container:hover {
+    background: rgba(20, 20, 20, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(2px);
+}
+
+.logo {
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.dot {
+    color: var(--accent);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-cta {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000;
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 60px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-cta:hover {
+    background: #ccc;
+    transform: translateY(-1px);
+}
+
+.status-indicator {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #00ff88;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.blink {
+    width: 6px;
+    height: 6px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff88;
+    animation: pulse 2s infinite;
+}
+
+/* Mobile Adjustment: Hide Status, Keep Button */
+@media (max-width: 480px) {
+    .nav-cta {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Intro Section */
 .intro-section {
     
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 24px;
     padding-top: 120px;
 }
 
@@ -66,84 +157,359 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
-.avatar { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border); }
-.mono-label { font-family: var(--font-mono); font-size: 0.7rem; color: #888; letter-spacing: 1px; }
-
-h1 { font-size: 2rem; letter-spacing: -1px; line-height: 1; margin-bottom: 0.5rem; }
-.role { color: #888; font-size: 0.9rem; margin-bottom: 1.5rem; }
-.divider { height: 1px; background: var(--border); width: 100%; margin-bottom: 1.5rem; }
-.bio { font-size: 0.95rem; line-height: 1.6; color: #ccc; margin-bottom: 1.5rem; }
-.tech-stack span { 
-    display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; 
-    padding: 4px 8px; border: 1px solid var(--border); border-radius: 4px; margin-right: 5px; color: #888;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
 }
 
-/* === 4. PROJECT FEED (SLIDE INS) === */
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+}
+
+.mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.role {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+.tech-stack span {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-right: 5px;
+    color: #888;
+}
+
+/* Project Feed */
 .project-feed {
     padding: 24px 24px;
-    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 32px; /* Spacing between projects */
+    gap: 60px;
+    max-width: 500px;
 }
-.feed-label { margin: 12px; display: block; color: white; font-size: 24px; font-weight: 500;}
+
+.feed-label {
+    margin: 12px 0 24px 0;
+    display: block;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    width: 100%;
+}
 
 .project-card {
     width: 100%;
     height: 100%;
-    transition: transform 0.3s ease;
     cursor: pointer;
 }
-.project-card:hover .p-image img { transform: scale(1.03); }
+
+.project-card:hover .p-image img {
+    transform: scale(1.05);
+}
+
+.p-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
 
 .p-image {
     width: 100%;
     height: 100%;
     border-radius: 16px;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     border: 1px solid var(--border);
+    background: #111;
 }
-.p-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s ease; }
 
-.p-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
-.tag { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); }
+.p-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
-/* === 5. CTA === */
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+/* Call To Action */
 .cta-section {
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 4rem 2rem;
     text-align: center;
     border-top: 1px solid var(--border);
-    background: linear-gradient(to top, rgba(5,5,5,1), transparent);
+    background: linear-gradient(to top, #000, transparent);
+    position: relative;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 20px 0 10px 0;
+    font-weight: 600;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.highlight-text {
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.cta-subtext {
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+    font-size: 1.1rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.cta-subtext-1 {
+    max-width: 600px;
+    margin: 0 auto 48px auto;
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+}
+.cta-subtext strong {
+    color: #fff;
+    font-weight: 500;
+}
+
+.footer-meta {
+    margin-top: 8rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 .btn-primary {
-    display: inline-flex;
-    align-items: center;
+    width: 250px;
     padding: 16px 32px;
     background: #fff;
     color: #000;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 8px; /* Sharper corners = more industrial */
     font-weight: 600;
-    margin-top: 2rem;
     transition: 0.3s;
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.15); }
-.footer-meta { margin-top: 4rem; font-family: var(--font-mono); font-size: 0.7rem; color: #444; display: flex; justify-content: space-between; }
+.btn-primary:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 0 20px rgba(255,255,255,0.2); 
+}
 
-/* === ANIMATION UTILS === */
-@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+.btn-secondary {
+    width:250px;
+    padding: 16px 24px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+.btn-secondary:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.05);
+}
 
-/* The Slide-In State (Before JS triggers it) */
+/* Mobile CTA Text Size */
+@media (max-width: 768px) {
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+    .cta-subtext {
+        font-size: 1rem;
+    }
+    .footer-meta {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    .cta-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .reveal {
     opacity: 0;
     transform: translateY(60px) scale(0.95);
     transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-/* The Active State (JS adds this) */
+
 .reveal.active {
     opacity: 1;
     transform: translateY(0) scale(1);
+}
+@media (min-width: 1024px) {
+    .project-feed {
+        /* Open up the width for Desktop */
+        max-width: 1200px; 
+        
+        /* Switch to Grid */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+        column-gap: 60px; /* Big luxury gaps */
+        row-gap: 80px;
+        padding-top: 60px;
+    }
+
+    /* Make the "Projects" label span the full width */
+    .feed-label {
+        grid-column: span 2;
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 0;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 20px;
+    }
+
+    /* Make Desktop Images Huge */
+    .p-image {
+        height: 500px; /* Cinematic height */
+    }
+}
+
+/* Lightbox Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; /* Sit on top */
+    padding-top: 50px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 24px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    animation: zoom 0.3s;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 20px 0;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: 300;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Zoom Animation */
+@keyframes zoom {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+        margin-top: 30%;
+    }
 }
