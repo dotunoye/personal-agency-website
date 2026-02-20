@@ -366,9 +366,14 @@ h1 {
     font-size: 0.75rem;
     color: #444;
     display: flex;
-    justify-content: space-between;
     text-transform: uppercase;
     letter-spacing: 1px;
+    max-width: 1200px;
+    justify-content: space-between; /* Centers the pill */
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    
 }
 .btn-primary {
     width: 250px;

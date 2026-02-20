@@ -42,7 +42,7 @@ const projects = [
 const container = document.getElementById('projectContainer');
 
 function renderProjects() {
-    const labelHTML = '<div class="feed-label">Projects <div class="mono-label">// Prototype builds</div></div>';
+    const labelHTML = '<div class="feed-label">Projects <div class="mono-label">// Concept builds</div></div>';
     
     const projectsHTML = projects.map(project => `
         <div class="project-card reveal">
