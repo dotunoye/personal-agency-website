@@ -3,37 +3,37 @@ const projects = [
     {
         title: "Apex Exotic Cars",
         tag: "Premium Dealership Showroom",
-        image: "assets/car-combo-2.png", 
+        image: "assets/car-combo-2.webp", 
         alt: "Apex Exotic Cars Website"
     },
     {
         title: "Obsidian Furniture",
         tag: "DIGITAL SHOWROOM",
-        image: "assets/furniture-combo.png",
+        image: "assets/furniture-combo.webp",
         alt: "Obsidian Furniture Website"
     },
     {
         title: "Mr Adedamola's Portfolio",
         tag: "FOREX LORD",
-        image: "assets/adedamola-combo.png",
+        image: "assets/adedamola-combo.webp",
         alt: "Mr Adedamola's Portfolio Website"
     },
     {
         title: "Kally",
         tag: "LOYALTY WEBSITE",
-        image: "assets/kally-combo.png",
+        image: "assets/kally-combo.webp",
         alt: "Lekki Real Estate"
     },
     {
         title: "Mrs Sophia's Portfolio",
         tag: "SERIAL ENTREPRENEUR",
-        image: "assets/sophia-combo.png", 
+        image: "assets/sophia-combo.webp", 
         alt: "Mrs Sophia's Portfolio Website"
     },
     {
         title: "Smith Mike's Portfolio",
         tag: "CEO CALGARY REAL ESTATE",
-        image: "assets/calgary-combo.png", 
+        image: "assets/calgary-combo.webp", 
         alt: "Smith Mike's Portfolio Website"
     },
 ];
@@ -50,7 +50,7 @@ function renderProjects() {
                 <img src="${project.image}" alt="${project.alt}" loading="lazy">
             </div>
             <div class="p-info">
-                <h3>${project.title}</h3>
+                <h2>${project.title}</h2>
                 <span class="tag">${project.tag}</span>
             </div>
         </div>
