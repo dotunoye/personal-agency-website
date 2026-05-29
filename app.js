@@ -1,6 +1,14 @@
 /* Project Data */
 const projects = [
     {
+        title: "Eden Avenue Interiors",
+    tag: "Interior Design",
+    image: "assets/eden-avenue.png",
+    alt: "Eden Avenue Showcase",
+    linkText: "View Live Site",
+    linkUrl: "https://edenavenueinteriors.com"
+    },
+    {
         title: "Apex Exotic Cars",
         tag: "Premium Dealership Showroom",
         image: "assets/car-combo-2.webp", 
@@ -36,6 +44,7 @@ const projects = [
         image: "assets/calgary-combo.webp", 
         alt: "Smith Mike's Portfolio Website"
     },
+    
 ];
 
 /* Render Projects */
@@ -45,15 +54,22 @@ function renderProjects() {
     const labelHTML = '<div class="feed-label">Projects <div class="mono-label">// Concept builds</div></div>';
     
     const projectsHTML = projects.map(project => `
-        <div class="project-card reveal">
-            <div class="p-image">
-                <img src="${project.image}" alt="${project.alt}" loading="lazy">
-            </div>
-            <div class="p-info">
-                <h2>${project.title}</h2>
-                <span class="tag">${project.tag}</span>
-            </div>
-        </div>
+    <div class="project-card reveal" style="position: relative; display: flex; flex-direction: column;">
+    <div class="p-image">
+        <img src="${project.image}" alt="${project.alt}" loading="lazy">
+    </div>
+    <div class="p-info" style="padding-bottom: 60px; flex-grow: 1;">
+        <h2>${project.title}</h2>
+        <span class="tag" style="display: inline-block; margin-bottom: 12px;">${project.tag}</span>
+        
+        ${project.linkText ? `
+            <a href="${project.linkUrl || '#'}" target="_blank" rel="noopener noreferrer" 
+               style="position: absolute; left: 1px; right: 1px; bottom: 16px; display: block; text-align: center; box-sizing: border-box; padding: 12px 16px; background-color: #9db2ff; color: #1c1c1c; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-radius: 4px; transition: opacity 0.2s ease;">
+               ${project.linkText}
+            </a>
+        ` : ''}
+    </div>
+</div>
     `).join('');
 
     container.innerHTML = labelHTML + projectsHTML;
