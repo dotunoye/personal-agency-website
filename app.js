@@ -9,6 +9,14 @@ const projects = [
     linkUrl: "https://edenavenueinteriors.com"
     },
     {
+        title: "Digital Library for my Campus Chapel",
+        tag: "RCF FUNAAB Digital Library",
+        image: "assets/RCF-FUNAAB-Library.png", 
+        alt: "RCF FUNAAB Digital Library",
+        linkText: "View Live Site",
+        linkUrl: "https://rcflibrarytracker.vercel.app/"
+    },
+    {
         title: "Apex Exotic Cars",
         tag: "Premium Dealership Showroom",
         image: "assets/car-combo-2.webp", 
@@ -44,14 +52,7 @@ const projects = [
         image: "assets/calgary-combo.webp", 
         alt: "Smith Mike's Portfolio Website"
     },
-    {
-        title: "Digital Library for my Campus Chapel",
-        tag: "RCF FUNAAB Digital Library",
-        image: "assets/RCF-FUNAAB-Library.png", 
-        alt: "RCF FUNAAB Digital Library",
-        linkText: "View Live Site",
-        linkUrl: "https://rcflibrarytracker.vercel.app/"
-    },
+    
 ];
 
 /* Render Projects */
