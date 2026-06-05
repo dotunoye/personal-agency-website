@@ -14,7 +14,7 @@ const projects = [
         image: "assets/RCF-FUNAAB-Library.png", 
         alt: "RCF FUNAAB Digital Library",
         linkText: "View Live Site",
-        linkUrl: "https://rcflibrarytracker.vercel.app/"
+        linkUrl: "https://rcffunaablibrary.vercel.app/"
     },
     {
         title: "Apex Exotic Cars",
